@@ -1,0 +1,78 @@
+Authentication
+Note: Authentication is required for certain endpoints.
+
+Signup
+Registers a new user.
+
+URL: /signup
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "email": "string",
+  "password": "string",
+  "name": "string"
+}
+Response:
+Status Code: 201 CREATED
+Body: User object
+/////////////////////////////////////////////////////////////////
+Login
+Logs in an existing user and returns a JWT token for authentication.
+
+URL: /signin
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "email": "string",
+  "password": "string"
+}
+Response:
+Status Code: 200 OK
+Body: JwtResponse object
+//////////////////////////////////////////////////////////////
+Save Current User Profile Picture
+Saves the profile picture for the current user.
+
+URL: /user/profile-picture
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "email": "string",
+  "image": "string"
+}
+Response:
+Status Code: 200 OK
+Body: image added
+//////////////////////////////////////////////////////////////
+Get Current User Profile Picture
+Retrieves the profile picture for the current user.
+
+URL: /user/profile-picture
+Method: GET
+Response:
+Status Code: 200 OK
+Body: String representing the image URL
+//////////////////////////////////////////////////////////////
+Get Current User Name
+Retrieves the name of the current user.
+
+URL: /user/name
+Method: GET
+Response:
+Status Code: 200 OK
+Body: String representing the user's name
+//////////////////////////////////////////////////////////////
+Get Current User Email
+Retrieves the email address of the current user.
+
+URL: /user/email
+Method: GET
+Response:
+Status Code: 200 OK
+Body: String representing the user's email
