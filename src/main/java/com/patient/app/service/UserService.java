@@ -19,13 +19,15 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final JwtService jwtService;
+    private final UserDetailsServiceImpl userDetailsService;
 
     public UserService(UserRepository userRepository,
             BCryptPasswordEncoder bCryptPasswordEncoder,
-            JwtService jwtService) {
+            JwtService jwtService, UserDetailsServiceImpl userDetailsService) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.jwtService = jwtService;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -88,5 +90,18 @@ public class UserService implements UserDetailsService {
     public String getCurrentUserEmail() {
         User currentUser = getCurrentUser();
         return currentUser.getEmail();
+    }
+
+    public String refreshToken(String refreshToken) {
+        String email = jwtService.extractUserName(refreshToken);
+        if (email == null) {
+            throw new RuntimeException("Invalid Token");
+        }
+        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+        if (!jwtService.validateToken(refreshToken, userDetails)) {
+            throw new RuntimeException("expired Token or Invalid");
+        }
+
+        return jwtService.generateToken(userDetails);
     }
 }

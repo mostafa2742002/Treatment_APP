@@ -66,4 +66,11 @@ public class UserController {
         String email = userService.getCurrentUserEmail();
         return ResponseEntity.ok(email);
     }
+
+    @PostMapping("/refresh-token")
+    public String postMethodName(@RequestBody JsonNode token) {
+        String refreshToken = token.get("refreshToken").asText();
+        return userService.refreshToken(refreshToken);
+    }
+    
 }

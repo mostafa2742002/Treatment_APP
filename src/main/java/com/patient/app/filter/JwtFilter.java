@@ -33,7 +33,7 @@ public class JwtFilter extends OncePerRequestFilter {
         // "/", "/error", "/webjars/**", "/index.html", "/signup", "/signin"
         return path.startsWith("/webjars") || path.startsWith("/index.html") || path.startsWith("/signup")
                 || path.startsWith("/signin") ||
-                path.equals("/") || path.equals("/welcome.html") || path.startsWith("/blog");
+                path.equals("/") || path.equals("/welcome.html") || path.startsWith("/blog") || path.startsWith("/home/refreshtoken");
     }
 
     @Override

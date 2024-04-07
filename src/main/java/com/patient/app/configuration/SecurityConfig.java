@@ -51,7 +51,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/", "/error", "/webjars/**", "/index.html", "/signup", "/blog", "/blog/all",
-                                "/blog/**", "/signin")
+                                "/blog/**", "/signin", "/home/refreshtoken")
                         .permitAll()
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
