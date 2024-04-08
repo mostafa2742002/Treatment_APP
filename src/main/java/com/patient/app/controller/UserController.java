@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -15,6 +16,7 @@ import com.patient.app.model.User;
 import com.patient.app.service.UserService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
 @RestController
 public class UserController {
@@ -26,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> signup(@RequestBody @Valid UserDTO userDTO) {
+    public ResponseEntity<User> signup(@RequestBody @Valid @NotNull UserDTO userDTO) {
         User user = userService.register(userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
@@ -34,13 +36,13 @@ public class UserController {
     // Todo : Invalid endpoint, authenticated endpoints shouldn't be redirected to
     // gh login page
     @PostMapping("/signin")
-    public ResponseEntity<JwtResponse> login(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<JwtResponse> login(@RequestBody @NotNull UserDTO userDTO) {
         JwtResponse jwtResponse = userService.login(userDTO);
         return ResponseEntity.status(HttpStatus.OK).body(jwtResponse);
     }
 
     @PostMapping("/user/profile-picture")
-    public ResponseEntity<String> saveCurrentUserProfilePicture(@RequestBody JsonNode user) {
+    public ResponseEntity<String> saveCurrentUserProfilePicture(@RequestBody @NotNull JsonNode user) {
         String email = user.get("email").asText();
         String image = user.get("image").asText();
 
@@ -71,6 +73,12 @@ public class UserController {
     public String postMethodName(@RequestBody JsonNode token) {
         String refreshToken = token.get("refreshToken").asText();
         return userService.refreshToken(refreshToken);
+    }
+
+    @PostMapping("/star")
+    public ResponseEntity<String> star(@RequestParam String doctorId) {
+        userService.star(doctorId);
+        return ResponseEntity.ok("Started");
     }
     
 }

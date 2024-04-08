@@ -1,5 +1,383 @@
 Authentication
 Note: Authentication is required for certain endpoints.
+///////////////////////////////////////////////////////
+Create Doctor
+Creates a new doctor.
+
+URL: /doctor
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "id": "string",
+  "name": "string",
+  "description": "string",
+  "speciality": "string",
+  "experience": "string",
+  "email": "string",
+  "language": "string",
+  "phone": "string",
+  "Subspecialties": [],
+  "star_1": 0,
+  "star_2": 0,
+  "star_3": 0,
+  "star_4": 0,
+  "star_5": 0,
+  "comments": [],
+  "sessions_dates": [],
+  "sessions_reqests": []
+}
+Response:
+Status Code: 201 CREATED
+Body: Doctor object
+///////////////////////////////////////////////////////
+Update Doctor
+Updates an existing doctor.
+
+URL: /doctor
+Method: PUT
+Request Body:
+json
+Copy code
+{
+  "id": "string",
+  "name": "string",
+  "description": "string",
+  "speciality": "string",
+  "experience": "string",
+  "email": "string",
+  "language": "string",
+  "phone": "string",
+  "Subspecialties": [],
+  "star_1": 0,
+  "star_2": 0,
+  "star_3": 0,
+  "star_4": 0,
+  "star_5": 0,
+  "comments": [],
+  "sessions_dates": [],
+  "sessions_reqests": []
+}
+Response:
+Status Code: 200 OK
+Body: Doctor object
+///////////////////////////////////////////////////////
+Delete Doctor
+Deletes an existing doctor.
+
+URL: /doctor
+Method: DELETE
+Request Body:
+json
+Copy code
+{
+  "id": "string",
+  "name": "string",
+  "description": "string",
+  "speciality": "string",
+  "experience": "string",
+  "email": "string",
+  "language": "string",
+  "phone": "string",
+  "Subspecialties": [],
+  "star_1": 0,
+  "star_2": 0,
+  "star_3": 0,
+  "star_4": 0,
+  "star_5": 0,
+  "comments": [],
+  "sessions_dates": [],
+  "sessions_reqests": []
+}
+Response:
+Status Code: 200 OK
+Body: Doctor object
+///////////////////////////////////////////////////////
+Star Doctor
+Stars a doctor.
+
+URL: /doctor/star
+Method: POST
+Request Parameters:
+doctorId: ID of the doctor
+star: Star value (integer)
+Response:
+Status Code: 200 OK
+Body: Doctor starred
+///////////////////////////////////////////////////////
+Unstar Doctor
+Removes star from a doctor.
+
+URL: /doctor/unstar
+Method: POST
+Request Parameters:
+doctorId: ID of the doctor
+star: Star value (integer)
+Response:
+Status Code: 200 OK
+Body: Doctor unstarred
+///////////////////////////////////////////////////////
+Comment Doctor
+Comments on a doctor.
+
+URL: /doctor/comment
+Method: POST
+Request Parameters:
+doctorId: ID of the doctor
+comment: Comment object
+Response:
+Status Code: 200 OK
+Body: Doctor commented
+///////////////////////////////////////////////////////
+Add Session Date
+Adds a session date for a doctor.
+
+URL: /doctor/session-date
+Method: POST
+Request Parameters:
+doctorId: ID of the doctor
+date: Session date
+Response:
+Status Code: 200 OK
+Body: Session date added
+///////////////////////////////////////////////////////
+Add Session Request
+Adds a session request for a doctor.
+
+URL: /doctor/session-req
+Method: POST
+Request Parameters:
+doctorId: ID of the doctor
+req: Session request object
+Response:
+Status Code: 200 OK
+Body: Session req added
+///////////////////////////////////////////////////////
+Program API
+This API provides endpoints for managing program resources.
+
+Base URL
+/api
+
+Create Program
+Creates a new program.
+
+URL: /program
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "type": "string",
+  "duration": "string",
+  "demo_video": {},
+  "price": "string",
+  "enroll": "string",
+  "steps_of_videos": [],
+  "doctors_id": [],
+  "articles": []
+}
+Response:
+Status Code: 201 CREATED
+Body: Program object
+///////////////////////////////////////////////////////
+Update Program
+Updates an existing program.
+
+URL: /program
+Method: PUT
+Request Body:
+json
+Copy code
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "type": "string",
+  "duration": "string",
+  "demo_video": {},
+  "price": "string",
+  "enroll": "string",
+  "steps_of_videos": [],
+  "doctors_id": [],
+  "articles": []
+}
+Response:
+Status Code: 200 OK
+Body: Program object
+///////////////////////////////////////////////////////
+Delete Program
+Deletes an existing program.
+
+URL: /program
+Method: DELETE
+Request Body:
+json
+Copy code
+{
+  "id": "string",
+  "title": "string",
+  "description": "string",
+  "type": "string",
+  "duration": "string",
+  "demo_video": {},
+  "price": "string",
+  "enroll": "string",
+  "steps_of_videos": [],
+  "doctors_id": [],
+  "articles": []
+}
+Response:
+Status Code: 200 OK
+Body: Program object
+///////////////////////////////////////////////////////
+Add Step
+Adds a step to a program.
+
+URL: /program/step
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "programId": "string",
+  "step": {}
+}
+Response:
+Status Code: 201 CREATED
+Body: Step added
+///////////////////////////////////////////////////////
+Add Video
+Adds a video to a step of a program.
+
+URL: /program/step/video
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "programId": "string",
+  "stepTitle": "string",
+  "video": {}
+}
+Response:
+Status Code: 201 CREATED
+Body: Video added
+///////////////////////////////////////////////////////
+Add Doctor
+Adds a doctor to a program.
+
+URL: /program/doctor
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "programId": "string",
+  "doctorId": "string"
+}
+Response:
+Status Code: 201 CREATED
+Body: Doctor added
+///////////////////////////////////////////////////////
+Add Article
+Adds an article to a program.
+
+URL: /program/article
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "programId": "string",
+  "article": {}
+}
+Response:
+Status Code: 201 CREATED
+Body: Article added
+///////////////////////////////////////////////////////
+Sections API
+This API provides endpoints for managing sections, subsections, and options.
+
+Base URL
+/api
+
+Create Section
+Creates a new section.
+
+URL: /section
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "title": "string",
+  "subSectionsId": []
+}
+Response:
+Status Code: 201 CREATED
+Body: Section object
+///////////////////////////////////////////////////////
+Create Subsection
+Creates a new subsection under a specified section.
+
+URL: /section/subsection
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "title": "string",
+  "description": "string",
+  "section_id": "string",
+  "options": []
+}
+Request Parameters:
+sectionId: ID of the parent section
+Response:
+Status Code: 201 CREATED
+Body: SubSection object
+///////////////////////////////////////////////////////
+Create Option
+Creates a new option.
+
+URL: /option
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "title": "string",
+  "description": "string"
+}
+Response:
+Status Code: 201 CREATED
+Body: Option object
+///////////////////////////////////////////////////////
+Add Option
+Adds options to a subsection.
+
+URL: /section/subsection/option
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "option_array": {},
+  "subSectionId": "string"
+}
+Request Parameters:
+subSectionId: ID of the parent subsection
+Response:
+Status Code: 201 CREATED
+Body: Option created
+///////////////////////////////////////////////////////
+User API
+This API provides endpoints for user-related operations.
 
 Signup
 Registers a new user.
@@ -17,9 +395,9 @@ Copy code
 Response:
 Status Code: 201 CREATED
 Body: User object
-/////////////////////////////////////////////////////////////////
-Login
-Logs in an existing user and returns a JWT token for authentication.
+///////////////////////////////////////////////////////
+Signin
+Logs in a user.
 
 URL: /signin
 Method: POST
@@ -33,9 +411,9 @@ Copy code
 Response:
 Status Code: 200 OK
 Body: JwtResponse object
-//////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 Save Current User Profile Picture
-Saves the profile picture for the current user.
+Saves the profile picture of the current user.
 
 URL: /user/profile-picture
 Method: POST
@@ -49,30 +427,56 @@ Copy code
 Response:
 Status Code: 200 OK
 Body: image added
-//////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
 Get Current User Profile Picture
-Retrieves the profile picture for the current user.
+Gets the profile picture of the current user.
 
 URL: /user/profile-picture
 Method: GET
 Response:
 Status Code: 200 OK
-Body: String representing the image URL
-//////////////////////////////////////////////////////////////
+Body: Profile picture (string)
+///////////////////////////////////////////////////////
 Get Current User Name
-Retrieves the name of the current user.
+Gets the name of the current user.
 
 URL: /user/name
 Method: GET
 Response:
 Status Code: 200 OK
-Body: String representing the user's name
-//////////////////////////////////////////////////////////////
+Body: User name (string)
+///////////////////////////////////////////////////////
 Get Current User Email
-Retrieves the email address of the current user.
+Gets the email of the current user.
 
 URL: /user/email
 Method: GET
 Response:
 Status Code: 200 OK
-Body: String representing the user's email
+Body: User email (string)
+///////////////////////////////////////////////////////
+Refresh Token
+Refreshes the authentication token.
+
+URL: /refresh-token
+Method: POST
+Request Body:
+json
+Copy code
+{
+  "refreshToken": "string"
+}
+Response:
+Status Code: 200 OK
+Body: New authentication token
+///////////////////////////////////////////////////////
+Star
+Stars a doctor for the current user.
+
+URL: /star
+Method: POST
+Request Parameters:
+doctorId: ID of the doctor
+Response:
+Status Code: 200 OK
+Body: Started

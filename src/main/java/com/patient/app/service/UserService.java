@@ -1,5 +1,7 @@
 package com.patient.app.service;
 
+import java.util.ArrayList;
+
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -103,5 +105,14 @@ public class UserService implements UserDetailsService {
         }
 
         return jwtService.generateToken(userDetails);
+    }
+
+    public void star(String doctorId) {
+        User currentUser = getCurrentUser();
+        if (currentUser.getFav_doctors() == null) {
+            currentUser.setFav_doctors(new ArrayList<>());
+        }
+        currentUser.getFav_doctors().add(doctorId);
+        userRepository.save(currentUser);
     }
 }

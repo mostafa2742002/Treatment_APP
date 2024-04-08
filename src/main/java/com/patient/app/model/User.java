@@ -39,6 +39,9 @@ public class User implements UserDetails {
 
     private String name;
     private String image;
+    private String phone;
+    private ArrayList<String> fav_doctors;
+    private ArrayList<String> programs_id;
 
     public User(UserDTO userDTO) {
         this.email = userDTO.getEmail();
